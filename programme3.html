@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // no paramenter paramater function
+      var kamal = () => document.writeln("hellow world");
+      kamal();
+      document.writeln();
+      <!-- ----------------------------------------------------------------------- -->
+      // single parameter
+      var yourName = (name) => {
+        document.writeln(`\nhello my name is ${name}`);
+      };
+      yourName("kamal");
+
+      <!-- ----------------------------------------------------------------------- -->
+
+      var myname = (firstName, lastName) => {
+        document.writeln(
+          `My first name is ${firstName} and the last name is ${lastName}`
+        );
+      };
+      myname("amit", "Kumar");
+    </script>
+  </body>
+</html>
