@@ -6,30 +6,25 @@
     <title>Document</title>
   </head>
   <body>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. In perferendis
-      suscipit nihil eaque quo adipisci ad quis repudiandae accusamus similique
-      consequatur deserunt quae, iusto reiciendis quasi ea error minima sint!
-    </p>
+    <p>Open console!</p>
     <script>
-      function water() {
+      function checkResult() {
         return new Promise((resolve, reject) => {
-          const i = Math.random() < 0.5;
-          console.log(i);
-
-          if (i) {
+          const gotPercentage = Math.random() > 0.36;
+          console.log(gotPercentage);
+          if (gotPercentage) {
             resolve("I am passed");
           } else {
             reject("i am failed.");
           }
         });
       }
-      water()
-        .then((wow) => {
-          console.log("wow i am passed");
+      checkResult()
+        .then((response) => {
+          console.log(response);
         })
-        .catch((ohno) => {
-          console.log("ohno i am failed");
+        .catch((error) => {
+          console.log(error);
         });
     </script>
   </body>
