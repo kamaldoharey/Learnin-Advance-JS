@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. In perferendis
+      suscipit nihil eaque quo adipisci ad quis repudiandae accusamus similique
+      consequatur deserunt quae, iusto reiciendis quasi ea error minima sint!
+    </p>
+    <script>
+      function water() {
+        return new Promise((resolve, reject) => {
+          const i = Math.random() < 0.5;
+          console.log(i);
+
+          if (i) {
+            resolve("I am passed");
+          } else {
+            reject("i am failed.");
+          }
+        });
+      }
+      water()
+        .then((wow) => {
+          console.log("wow i am passed");
+        })
+        .catch((ohno) => {
+          console.log("ohno i am failed");
+        });
+    </script>
+  </body>
+</html>
