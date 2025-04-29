@@ -10,7 +10,9 @@
     <script>
       function checkResult() {
         return new Promise((resolve, reject) => {
-          const gotPercentage = Math.random() > 0.36;
+          const myPercentage = Math.random();
+          console.log(myPercentage);
+          const gotPercentage = myPercentage > 0.36;
           console.log(gotPercentage);
           if (gotPercentage) {
             resolve("I am passed");
