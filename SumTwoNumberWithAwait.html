@@ -1,28 +1,28 @@
 <!-- in this code we calculate sum of two number with setTimeout function -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="output"></div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="output"></div>
 
-    <script>
-      async function sum(a, b) {
-        return a + b;
-      }
+		<script>
+			async function sum(a, b) {
+				return a + b;
+			}
 
-      async function showSum() {
-        var result = await sum(45, 45);
+			async function showSum() {
+				var result = await sum(45, 45);
 
-        setTimeout(() => {
-          document.getElementById("output").textContent = result;
-        }, 3000);
-      }
+				setTimeout(() => {
+					document.getElementById('output').textContent = result;
+				}, 3000);
+			}
 
-      showSum();
-    </script>
-  </body>
+			showSum();
+		</script>
+	</body>
 </html>

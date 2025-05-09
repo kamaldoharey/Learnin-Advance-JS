@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script>
-      function tryToGetWater() {
-        // Let's pretend this randomly succeeds or fails
-        return new Promise((resolve, reject) => {
-          const gotWater = Math.random() < 0.8; // 80% chance of success (comparinsion me true and false value hi resutne hogi)
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			function tryToGetWater() {
+				// Let's pretend this randomly succeeds or fails
+				return new Promise((resolve, reject) => {
+					const gotWater = Math.random() < 0.8; // 80% chance of success (comparinsion me true and false value hi resutne hogi)
 
-          if (gotWater) {
-            resolve("Here's your water!"); // Success!
-          } else {
-            reject("Oops, couldn't find any water."); // Failure!
-          }
-        });
-      }
+					if (gotWater) {
+						resolve("Here's your water!"); // Success!
+					} else {
+						reject("Oops, couldn't find any water."); // Failure!
+					}
+				});
+			}
 
-      tryToGetWater()
-        .then((water) => {
-          // This will run if tryToGetWater() calls resolve()FF
-          console.log("Success:", water);
-          console.log("Now I can drink!");
-        })
+			tryToGetWater()
+				.then((water) => {
+					// This will run if tryToGetWater() calls resolve()FF
+					console.log('Success:', water);
+					console.log('Now I can drink!');
+				})
 
-        .catch((error) => {
-          // This will run if tryToGetWater() calls reject()
-          console.error("Error:", error);
-          console.log("Guess I'll stay thirsty for now.");
-        });
+				.catch((error) => {
+					// This will run if tryToGetWater() calls reject()
+					console.error('Error:', error);
+					console.log("Guess I'll stay thirsty for now.");
+				});
 
-      console.log("Asking for water...");
-    </script>
-  </body>
+			console.log('Asking for water...');
+		</script>
+	</body>
 </html>
