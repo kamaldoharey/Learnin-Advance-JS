@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<input type="text" id="inputTextBox" />
+		enable<input type="checkbox" name="checkboxClass" id="checkboxEnable" />
+		disable<input type="checkbox" name="checkboxClass" id="checkboxDisable" />
+
+		<script>
+			function updateInputState() {
+				var textBox = document.querySelector('#inputTextBox');
+				var enableChecked = document.querySelector('#checkboxEnable').checked;
+				var disableChecked = document.querySelector('#checkboxDisable').checked;
+
+				if (disableChecked) {
+					textBox.disabled = true;
+				} else if (enableChecked) {
+					textBox.disabled = false;
+				} else {
+					textBox.disabled = true;
+				}
+			}
+
+			// Uncheck the other checkbox when one is clicked
+			document
+				.querySelector('#checkboxEnable')
+				.addEventListener('click', function () {
+					if (this.checked) {
+						// here this is pointing the element which in the querySelector
+						document.querySelector('#checkboxDisable').checked = false;
+					}
+					updateInputState();
+				});
+
+			document
+				.querySelector('#checkboxDisable')
+				.addEventListener('click', function () {
+					if (this.checked) {
+						// here this is pointing the element which in the querySelector
+						document.querySelector('#checkboxEnable').checked = false;
+					}
+					updateInputState();
+				});
+		</script>
+	</body>
+</html>
