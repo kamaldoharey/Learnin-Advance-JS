@@ -4,6 +4,17 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
+		<style>
+			ul {
+				columns: 3;
+				/* width: fit-content; */
+			}
+
+			li {
+				padding: 1rem;
+				border: 1px solid black;
+			}
+		</style>
 	</head>
 	<body>
 		<h1>This is heading</h1>
@@ -11,7 +22,7 @@
 			var getHead1 = document.querySelector('h1');
 
 			var createOl = document.createElement('ul');
-			for (let i = 1; i <= 10; i++) {
+			for (let i = 1; i <= 11; i++) {
 				var createLi = document.createElement('li');
 
 				createOl.appendChild(createLi);
