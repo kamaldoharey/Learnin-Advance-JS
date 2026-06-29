@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrow Functions</title>
+  </head>
+  <body>
+    <script>
+      // DECLARATION + INITIALIZATION: Arrow fn expression (no params)
+      // Note: Arrow fns are not hoisted, have no prototype, lexical 'this'
+      var sayHello = () => document.writeln("Hello world");
+      // USAGE: Invoke function
+      sayHello();
+      document.writeln("<br>");
+
+      // DECLARATION + INITIALIZATION: Single-param arrow fn
+      var greetByName = (name) => {
+        document.writeln(`<br>Hello, my name is ${name}`);
+      };
+      // USAGE: Call with argument
+      greetByName("Kamal");
+
+      // DECLARATION + INITIALIZATION: Multi-param arrow fn
+      var displayName = (firstName, lastName) => {
+        document.writeln(
+          `<br>My first name is ${firstName} and last name is ${lastName}`
+        );
+      };
+      // USAGE: Call with two arguments
+      displayName("Amit", "Kumar");
+    </script>
+  </body>
+</html>
