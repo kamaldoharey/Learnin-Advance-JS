@@ -1,34 +1,50 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arrow Functions</title>
+    <meta charset="utf-8" />
+    <title>Arrow Functions – Notes</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 2rem;
+      }
+      code {
+        background: #f5f5f5;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+      }
+    </style>
   </head>
+
   <body>
     <script>
-      // DECLARATION + INITIALIZATION: Arrow fn expression (no params)
-      // Note: Arrow fns are not hoisted, have no prototype, lexical 'this'
-      var sayHello = () => document.writeln("Hello world");
-      // USAGE: Invoke function
-      sayHello();
-      document.writeln("<br>");
+      /* ==========================================================
+      Arrow functions (ES6+)
+      -----------------------------------------------
+      • Syntax: `const fn = (...params) => expression;`
+      • They are *function expressions*, so **not hoisted**.
+        (A declaration would be, e.g. `function foo(){}`.)
+      • No own `this`, no `arguments` object, and no `prototype`.
+      • Cannot be used as constructors (`new fn()` throws).
+      • Great for short callbacks or one‑liners.
+      ========================================================== */
 
-      // DECLARATION + INITIALIZATION: Single-param arrow fn
-      var greetByName = (name) => {
+      // 1️⃣ No‑parameter arrow function
+      const sayHello = () => document.writeln('Hello world');
+      sayHello(); // ← call it
+      document.writeln('<br>'); // just a line break
+
+      // 2️⃣ Single‑parameter arrow function
+      const greetByName = (name) => {
         document.writeln(`<br>Hello, my name is ${name}`);
       };
-      // USAGE: Call with argument
-      greetByName("Kamal");
+      greetByName('Kamal');
 
-      // DECLARATION + INITIALIZATION: Multi-param arrow fn
-      var displayName = (firstName, lastName) => {
-        document.writeln(
-          `<br>My first name is ${firstName} and last name is ${lastName}`
-        );
+      // 3️⃣ Multi‑parameter arrow function
+      const displayName = (firstName, lastName) => {
+        document.writeln(`<br>My first name is ${firstName} and last name is ${lastName}`);
       };
-      // USAGE: Call with two arguments
-      displayName("Amit", "Kumar");
+      displayName('Amit', 'Kumar');
     </script>
   </body>
 </html>
