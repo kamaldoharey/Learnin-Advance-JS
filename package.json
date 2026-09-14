@@ -1,0 +1,23 @@
+{
+  "name": "learnin-advance-js",
+  "version": "1.0.0",
+  "description": "Learning and practicing advanced JavaScript concepts",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch",
+    "test": "node --test",
+    "format": "npx prettier --write ."
+  },
+  "keywords": [
+    "javascript",
+    "es6",
+    "async",
+    "dom",
+    "promises"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.5.0"
+  }
+}
