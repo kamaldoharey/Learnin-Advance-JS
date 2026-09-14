@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrow functions – complete practical revision</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+        background: #fafafa;
+        margin: 0;
+        padding: 2rem 1.5rem;
+        line-height: 1.5;
+        color: #1e1e1e;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 24px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        padding: 2rem 2rem 3rem;
+      }
+      h1 {
+        font-size: 2rem;
+        margin-top: 0;
+        border-bottom: 3px solid #d0d7de;
+        padding-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      h1::before {
+        content: 'λ';
+        font-size: 2.2rem;
+        font-weight: 400;
+        color: #0969da;
+      }
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+        padding-left: 0.5rem;
+        border-left: 5px solid #0969da;
+        padding-left: 1rem;
+        background: linear-gradient(to right, #f0f6ff, transparent);
+      }
+      h3 {
+        font-size: 1.2rem;
+        margin: 1.5rem 0 0.5rem;
+        color: #24292f;
+      }
+      code {
+        background: #f0f2f5;
+        padding: 0.2rem 0.4rem;
+        border-radius: 6px;
+        font-family: 'JetBrains Mono', 'Fira Code', monospace;
+        font-size: 0.9em;
+        color: #b4004e;
+        white-space: nowrap;
+      }
+      pre {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 1.2rem 1.5rem;
+        border-radius: 16px;
+        overflow-x: auto;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        tab-size: 2;
+        margin: 1rem 0;
+        border-left: 6px solid #0969da;
+      }
+      pre code {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+        white-space: pre;
+        font-size: 1em;
+      }
+      .live-output {
+        background: #f6f8fa;
+        border: 1px solid #d0d7de;
+        border-radius: 16px;
+        padding: 1rem 1.5rem;
+        margin: 1rem 0 1.5rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.95rem;
+        color: #0a3069;
+      }
+      .live-output strong {
+        color: #24292f;
+        font-family: system-ui, sans-serif;
+        font-weight: 600;
+        display: inline-block;
+        margin-right: 0.5rem;
+      }
+      .note {
+        background: #fff8e5;
+        border-left: 5px solid #d4a72c;
+        padding: 0.8rem 1.2rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+        font-size: 0.95rem;
+        color: #3d2c00;
+      }
+      .edge {
+        background: #ffe9e9;
+        border-left: 5px solid #cf222e;
+        padding: 0.8rem 1.2rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+        font-size: 0.95rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin: 1rem 0;
+      }
+      @media (max-width: 700px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        body {
+          padding: 1rem 0.5rem;
+        }
+        .container {
+          padding: 1.5rem;
+        }
+      }
+      hr {
+        border: none;
+        border-top: 2px dashed #d0d7de;
+        margin: 2rem 0;
+      }
+      .badge {
+        background: #0969da;
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 0.2rem 0.6rem;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+      }
+      .badge.red {
+        background: #cf222e;
+      }
+      .badge.green {
+        background: #1a7f37;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Arrow functions – practical & edge‑case revision</h1>
+      <p style="font-size: 1.1rem; color: #57606a; margin-top: -0.5rem">
+        One file · All syntax · Real‑world usage · Browser & console gotchas
+      </p>
+
+      <!-- ============================================================ -->
+      <h2>1. The two bodies: expression vs block</h2>
+      <p>
+        <code>const fn = (a, b) => a + b;</code> — implicit return, no braces, single expression.
+      </p>
+      <p>
+        <code>const fn = (a, b) => { return a + b; };</code> — block body, explicit
+        <code>return</code>.
+      </p>
+      <pre><code>// expression body (implicit return)
+const add = (a, b) => a + b;
+
+// block body (explicit return needed)
+const multiply = (a, b) => {
+  const result = a * b;
+  return result;
+};</code></pre>
+      <div class="note">
+        ⚡ <strong>Rule of thumb:</strong> omit braces for one-liners; use braces when you need
+        multiple statements or side effects.
+      </div>
+
+      <!-- ============================================================ -->
+      <h2>2. Parameters: zero, one, many, defaults, rest</h2>
+      <div class="grid">
+        <div>
+          <h3>Zero parameters</h3>
+          <pre><code>const sayHi = () => 'Hi!';
+console.log(sayHi()); // Hi!</code></pre>
+        </div>
+        <div>
+          <h3>One parameter (no parens needed)</h3>
+          <pre><code>const double = n => n * 2;
+console.log(double(5)); // 10</code></pre>
+        </div>
+        <div>
+          <h3>Multiple parameters</h3>
+          <pre><code>const join = (a, b, c) => `${a}-${b}-${c}`;
+console.log(join('x','y','z')); // x-y-z</code></pre>
+        </div>
+        <div>
+          <h3>Default parameters</h3>
+          <pre><code>const greet = (name = 'Guest') => `Hello, ${name}`;
+console.log(greet());      // Hello, Guest
+console.log(greet('Dev')); // Hello, Dev</code></pre>
+        </div>
+      </div>
+      <h3>Rest parameters (...args)</h3>
+      <pre><code>const sumAll = (...numbers) => numbers.reduce((acc, n) => acc + n, 0);
+console.log(sumAll(1, 2, 3, 4)); // 10</code></pre>
+
+      <!-- ============================================================ -->
+      <h2>3. Real‑life practical usage</h2>
+      <h3>Array methods – map, filter, reduce</h3>
+      <pre><code>const nums = [1, 2, 3, 4, 5];
+const squares = nums.map(n => n * n);          // [1, 4, 9, 16, 25]
+const evens = nums.filter(n => n % 2 === 0);   // [2, 4]
+const total = nums.reduce((s, n) => s + n, 0); // 15</code></pre>
+
+      <h3>Event handlers (with browser DOM)</h3>
+      <pre><code>button.addEventListener('click', () => {
+  console.log('Clicked!');
+  // no `this` binding needed – arrow uses outer scope
+});</code></pre>
+
+      <h3>Promises & async (fetch, timers)</h3>
+      <pre><code>fetch('/api/data')
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+
+setTimeout(() => console.log('2 seconds'), 2000);</code></pre>
+
+      <h3>Inline callbacks with sort</h3>
+      <pre><code>const people = [{name:'Zoe', age:30}, {name:'Adam', age:25}];
+people.sort((a, b) => a.age - b.age); // ascending</code></pre>
+
+      <!-- ============================================================ -->
+      <h2>4. Key differences & pitfalls <span class="badge red">edge cases</span></h2>
+
+      <h3>❌ No own <code>this</code> – inherits from enclosing scope</h3>
+      <pre><code>const obj = {
+  name: 'Object',
+  regular: function() {
+    console.log(this.name); // 'Object'
+  },
+  arrow: () => {
+    console.log(this.name); // undefined (or window.name in browser)
+  }
+};
+obj.regular(); // Object
+obj.arrow();   // undefined</code></pre>
+      <div class="edge">
+        <strong
+          >⚠️ Never use arrow functions as object methods if you rely on <code>this</code>.</strong
+        >
+        Also avoid for event listeners that need <code>this</code> to reference the element.
+      </div>
+
+      <h3>❌ No <code>arguments</code> object</h3>
+      <pre><code>const regular = function() { return arguments.length; };
+console.log(regular(1, 2, 3)); // 3
+
+const arrow = () => arguments.length; // ReferenceError (or outer arguments)
+// Use rest params instead: (...args) => args.length</code></pre>
+
+      <h3>❌ Cannot be constructors (<code>new</code> throws)</h3>
+      <pre><code>const Person = (name) => { this.name = name; };
+// new Person('Ana'); // TypeError: Person is not a constructor</code></pre>
+
+      <h3>❌ No <code>prototype</code> property</h3>
+      <pre><code>const fn = () => {};
+console.log(fn.prototype); // undefined</code></pre>
+
+      <h3>❌ Not hoisted like declarations</h3>
+      <pre><code>// console.log(arrowFn()); // ReferenceError: Cannot access before initialization
+const arrowFn = () => 'hi';
+
+// But function declarations are hoisted:
+console.log(declFn()); // 'hello'
+function declFn() { return 'hello'; }</code></pre>
+
+      <h3>✅ Great for callbacks where <code>this</code> should be lexical</h3>
+      <pre><code>const counter = {
+  count: 0,
+  start() {
+    setInterval(() => {
+      this.count++; // `this` is counter (lexical)
+      console.log(this.count);
+    }, 1000);
+  }
+};
+// counter.start();</code></pre>
+
+      <!-- ============================================================ -->
+      <h2>5. Browser vs Console quirks <span class="badge">environment</span></h2>
+      <ul style="padding-left: 1.5rem">
+        <li>
+          <strong>Browser top‑level:</strong> <code>this</code> inside an arrow at global scope is
+          <code>window</code> (same as regular <code>this</code>).
+        </li>
+        <li>
+          <strong>Console (DevTools):</strong> When you type an arrow function at the top level,
+          <code>this</code> is usually the <code>window</code> object too. But inside a module or
+          strict mode, it's <code>undefined</code>.
+        </li>
+        <li>
+          <strong>Strict mode:</strong> Arrow functions don't have their own <code>this</code>, so
+          it's taken from the enclosing lexical scope – which in strict global code is
+          <code>undefined</code>.
+        </li>
+        <li>
+          <strong>Node.js (console/REPL):</strong> Top‑level <code>this</code> is
+          <code>module.exports</code> (or <code>global</code> in some contexts).
+        </li>
+      </ul>
+      <div class="live-output" id="liveDemo">
+        <strong>▶ Live output (browser):</strong> <span id="outputSpan"></span>
+      </div>
+
+      <h3>📌 Quick demo – run in your browser console</h3>
+      <pre><code>// Paste in browser console:
+const obj = {
+  val: 42,
+  normal: function() { return this.val; },
+  arrow: () => this.val
+};
+console.log(obj.normal()); // 42
+console.log(obj.arrow());  // undefined (window.val)</code></pre>
+
+      <!-- ============================================================ -->
+      <h2>6. When to use arrow (cheat sheet)</h2>
+      <div class="grid">
+        <div style="background: #e6f7e6; padding: 1rem; border-radius: 16px">
+          <h3 style="margin-top: 0; color: #1a7f37">✅ Use arrow</h3>
+          <ul style="margin: 0; padding-left: 1.2rem">
+            <li>Array callbacks (map, filter, reduce)</li>
+            <li>Promises <code>.then()</code> / <code>.catch()</code></li>
+            <li>Timers (<code>setTimeout</code>, <code>setInterval</code>)</li>
+            <li>Event handlers when you don’t need <code>this</code></li>
+            <li>Short one‑liners, currying</li>
+            <li>When you want lexical <code>this</code></li>
+          </ul>
+        </div>
+        <div style="background: #ffe6e6; padding: 1rem; border-radius: 16px">
+          <h3 style="margin-top: 0; color: #cf222e">❌ Avoid arrow</h3>
+          <ul style="margin: 0; padding-left: 1.2rem">
+            <li>Object methods that use <code>this</code></li>
+            <li>Constructors (<code>new</code>)</li>
+            <li>When you need <code>arguments</code> object</li>
+            <li>Prototype methods</li>
+            <li>Event listeners that rely on <code>this</code> (e.g., jQuery)</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- ============================================================ -->
+      <h2>7. Syntax edge cases – things that break</h2>
+
+      <h3>Returning object literals (use parentheses)</h3>
+      <pre><code>// ❌ Syntax error: ambiguous with block
+// const makeUser = () => { name: 'Ana' };
+
+// ✅ Wrap in parentheses for implicit object return
+const makeUser = () => ({ name: 'Ana', age: 25 });
+console.log(makeUser()); // { name: 'Ana', age: 25 }</code></pre>
+
+      <h3>Immediately invoked arrow function (IIFE)</h3>
+      <pre><code>(() => {
+  console.log('IIFE arrow');
+})();</code></pre>
+
+      <h3>Arrow with ternary / short‑circuit</h3>
+      <pre><code>const isEven = n => n % 2 === 0 ? 'even' : 'odd';
+const defaultName = name => name || 'anonymous';</code></pre>
+
+      <h3>Nested arrows (currying)</h3>
+      <pre><code>const add = a => b => c => a + b + c;
+console.log(add(1)(2)(3)); // 6</code></pre>
+
+      <!-- ============================================================ -->
+      <h2>8. Live interactive (run below – real output)</h2>
+      <p>This section executes real arrow functions and shows results directly in the page:</p>
+      <div class="live-output" id="results">
+        <strong>📋 Output:</strong>
+        <ul id="outputList" style="margin: 0.5rem 0 0; padding-left: 1.5rem"></ul>
+      </div>
+
+      <script>
+        (function () {
+          // ----- live demo output -----
+          const out = document.getElementById('outputList');
+          const liveSpan = document.getElementById('outputSpan');
+          function addItem(text, isEdge = false) {
+            const li = document.createElement('li');
+            li.innerHTML = text;
+            if (isEdge) li.style.color = '#cf222e';
+            out.appendChild(li);
+          }
+
+          // 1. expression vs block
+          const add = (a, b) => a + b;
+          const multiply = (a, b) => {
+            return a * b;
+          };
+          addItem(`✅ add(3,4) = ${add(3, 4)} (expression body)`);
+          addItem(`✅ multiply(3,4) = ${multiply(3, 4)} (block body)`);
+
+          // 2. zero, one, default, rest
+          const sayHi = () => 'Hi!';
+          const double = (n) => n * 2;
+          const greet = (name = 'Guest') => `Hello, ${name}`;
+          const sumAll = (...nums) => nums.reduce((a, b) => a + b, 0);
+          addItem(`✅ sayHi() = ${sayHi()}`);
+          addItem(`✅ double(7) = ${double(7)}`);
+          addItem(`✅ greet() = ${greet()}, greet("Ravi") = ${greet('Ravi')}`);
+          addItem(`✅ sumAll(1,2,3,4,5) = ${sumAll(1, 2, 3, 4, 5)}`);
+
+          // 3. this difference
+          const obj = {
+            val: 99,
+            regular: function () {
+              return this.val;
+            },
+            arrow: () => this.val, // window.val (undefined in strict module)
+          };
+          addItem(`✅ obj.regular() = ${obj.regular()} (this = obj)`);
+          addItem(`⚠️ obj.arrow() = ${obj.arrow()} (lexical this, not obj)`, true);
+
+          // 4. No arguments – use rest instead
+          const oldStyle = function () {
+            return arguments.length;
+          };
+          const arrowStyle = (...args) => args.length;
+          addItem(`✅ oldStyle(1,2,3) = ${oldStyle(1, 2, 3)} (arguments object)`);
+          addItem(`✅ arrowStyle(1,2,3) = ${arrowStyle(1, 2, 3)} (rest params)`);
+
+          // 5. no prototype
+          const arrowFn = () => {};
+          addItem(`✅ typeof arrowFn.prototype = ${typeof arrowFn.prototype} (undefined)`);
+
+          // 6. hoisting: we can't call before declaration – but we can demonstrate
+          try {
+            // eslint-disable-next-line no-use-before-define
+            notYet();
+          } catch (e) {
+            addItem(`❌ calling arrow before declaration: ${e.name} (not hoisted)`, true);
+          }
+          const notYet = () => 'later';
+
+          // 7. object literal return
+          const makeUser = () => ({ name: 'Ana', age: 25 });
+          addItem(`✅ makeUser() = ${JSON.stringify(makeUser())} (parentheses needed)`);
+
+          // 8. IIFE
+          let iifeResult = (() => 'IIFE works')();
+          addItem(`✅ IIFE: ${iifeResult}`);
+
+          // 9. currying
+          const curryAdd = (a) => (b) => (c) => a + b + c;
+          addItem(`✅ currying: add(1)(2)(3) = ${curryAdd(1)(2)(3)}`);
+
+          // 10. array methods
+          const nums = [1, 2, 3, 4, 5];
+          addItem(`✅ map squares: [${nums.map((n) => n * n).join(', ')}]`);
+          addItem(`✅ filter evens: [${nums.filter((n) => n % 2 === 0).join(', ')}]`);
+
+          // set live output text
+          liveSpan.textContent = 'Arrow functions executed ✓ (see list below)';
+        })();
+      </script>
+
+      <!-- ============================================================ -->
+      <hr />
+      <h2 style="border-left-color: #8250df">📎 Summary card – memorise</h2>
+      <pre
+        style="background: #f3eefe; color: #1e1e1e; border-left-color: #8250df"
+      ><code style="color: #1e1e1e;">// Syntax
+const f1 = () => expr;
+const f2 = p => expr;
+const f3 = (a, b) => expr;
+const f4 = (a, b) => { return expr; };
+const f5 = (...args) => args.length;
+
+// Key traits
+- No this, arguments, prototype, new
+- Not hoisted (must declare before use)
+- Inherits this from enclosing scope
+- Can't be generator (no yield) — use function*
+
+// Use arrow for callbacks, promises, short functions
+// Avoid for methods, constructors, when `this` matters</code></pre>
+
+      <p style="text-align: right; color: #57606a; margin-top: 2rem; font-size: 0.9rem">
+        ⚡ Single‑file revision notes – arrow functions (ES6+) – all edge cases in browser &
+        console.
+      </p>
+    </div>
+
+    <!-- ensure no double doctype, extra scripts etc. -->
+  </body>
+</html>
