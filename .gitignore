@@ -1,7 +1,20 @@
-# Node dependencies
+# Dependencies
 node_modules/
+jspm_packages_lock.json
+.jspm_package_lock.json
+.node_modules_cache
 
-# Logs
+# Build Outputs
+dist/
+build/
+.next/
+out/
+.cache/
+.parcel-cache/
+.svelte-cache/
+docs/gen/
+
+# Logs & Errors
 logs
 *.log
 npm-debug.log*
@@ -10,14 +23,38 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Environment Variables
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor / IDE Files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.swp
+*.swo
+
 # OS Files
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Environment variables
-.env
-.env.local
+# Testing & Coverage
+coverage/
+.nyc_output
 
-# Build/Dist outputs
-dist/
-build/
+# Miscellaneous
+.temp/
+temp/
+*.min.js
+*.map
+
+# Generated Documentation
+docs/generated/
+docs/build/
