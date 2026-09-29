@@ -8,15 +8,34 @@
   </head>
   <body>
     <script>
-      // 1. Expression body – implicit return
-      const age = (a, b) => a + b;
+      // 1. Expression body – implicit return (arrow with implicit return)
+      const addNumbers = (x, y) => x + y;
 
-      // 2. Block body – explicit return needed
-      const age2 = (a, b) => {
-        return a + b;
+      // 2. Block body – explicit return needed (arrow with block body)
+      const addNumbersBlock = (x, y) => {
+        return x + y;
       };
 
-      document.writeln(`my age is ${sum(5, 5)}`);
+      document.writeln(`my age is ${addNumbers(5, 5)}`);
+
+      // 3. Edge case examples
+      const sumWithDefaults = (a = 0, b = 0) => a + b;
+      const sumRest = (...nums) => nums.reduce((acc, n) => acc + Number(n), 0);
+      const addStringNumbers = (a, b) => Number(a) + Number(b);
+      const bigAdd = (a, b) => BigInt(a) + BigInt(b);
+      const logAndReturn = (...args) => {
+        console.log('Arguments:', args);
+        return args;
+      };
+
+      // 4. Demo console logs
+      console.log('sumWithDefaults(5):', sumWithDefaults(5));
+      console.log('sumRest(1,2,3,4):', sumRest(1, 2, 3, 4));
+      console.log('addStringNumbers("2","3"):', addStringNumbers('2', '3'));
+      console.log(
+        'bigAdd(1000000000000n, 2000000000000n):',
+        bigAdd(1000000000000n, 2000000000000n)
+      );
     </script>
   </body>
 </html>

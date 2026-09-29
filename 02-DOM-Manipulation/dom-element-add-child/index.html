@@ -1,35 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-		<style>
-			ul {
-				columns: 3;
-				/* width: fit-content; */
-			}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ul {
+        columns: 3;
+        /* width: fit-content; */
+      }
 
-			li {
-				padding: 1rem;
-				border: 1px solid black;
-			}
-		</style>
-	</head>
-	<body>
-		<h1>This is heading</h1>
-		<script>
-			var getHead1 = document.querySelector('h1');
+      li {
+        padding: 1rem;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>This is heading</h1>
+    <script>
+      var getHead1 = document.querySelector('h1');
 
-			var createOl = document.createElement('ul');
-			for (let i = 1; i <= 11; i++) {
-				var createLi = document.createElement('li');
+      var createOl = document.createElement('ul');
+      for (let i = 1; i <= 11; i++) {
+        var createLi = document.createElement('li');
 
-				createOl.appendChild(createLi);
-				createLi.innerText = `Hello world ${i}`;
-			}
-			/* Append to body tag */
-			document.body.appendChild(createOl);
-		</script>
-	</body>
+        createOl.appendChild(createLi);
+        createLi.innerText = `Hello world ${i}`;
+      }
+      /* Append to body tag */
+      document.body.appendChild(createOl);
+    </script>
+  </body>
 </html>

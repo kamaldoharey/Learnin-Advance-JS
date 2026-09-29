@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML in JS</title>
+  </head>
+  <body>
+    <label id="label">Counter:</label>
+    <span id="value">0</span>
+
+    <br /><br />
+
+    <button id="btn">Click to Start Count</button>
+
+    <script>
+      const label = document.getElementById('label');
+      const valueDisplay = document.getElementById('value');
+      const button = document.getElementById('btn');
+
+      button.addEventListener('click', () => {
+        // We can change the label text as well
+        label.textContent = 'Counting to 10:';
+
+        // Loop from 1 to 10
+        for (let i = 1; i <= 10; i++) {
+          // Note: Since JS is single-threaded, this loop will finish
+          // almost instantly. If you want to see them change one by one,
+          // you would normally use setInterval or requestAnimationFrame.
+          // However, for a "print 1 to 10" request, a loop is the standard logic.
+          valueDisplay.textContent = i;
+
+          // Optional: If you want to see it happen slowly (100ms between numbers)
+          // you would use a different approach, but here is the simple requested logic:
+          // console.log(i);
+        }
+      });
+    </script>
+  </body>
+</html>
