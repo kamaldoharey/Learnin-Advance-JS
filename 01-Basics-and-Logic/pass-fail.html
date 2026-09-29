@@ -1,34 +1,45 @@
-<!-- in this code we check pass/fail using "resolve, reject" -->
+<!--
+This page demonstrates a simple pass/fail check using JavaScript Promises.
+It generates a random percentage and resolves if the value is above 0.36,
+otherwise it rejects. The result (passed or failed) is logged to the console.
+-->
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Pass/Fail Demo</title>
   </head>
   <body>
-    <p>Open console!</p>
+    <!-- The script runs automatically when the page loads -->
     <script>
+      // Returns a Promise that resolves if the random percentage is > 0.36
       function checkResult() {
         return new Promise((resolve, reject) => {
-          const myPercentage = Math.random();
-          console.log(myPercentage);
-          const gotPercentage = myPercentage > 0.36;
-          console.log(gotPercentage);
+          const myPercentage = Math.random(); // ✅ 1️⃣ Generate random percentage
+          console.log('Generated percent:', myPercentage);
+          const gotPercentage = myPercentage > 0.36; // ✅ 2️⃣ Evaluate pass condition
+          console.log('Passed? ', gotPercentage);
+
           if (gotPercentage) {
+            // ✅ 3️⃣a Resolve on success
             resolve('I am passed');
           } else {
-            reject('i am failed.');
+            // ✅ 3️⃣b Reject on failure
+            reject('I am failed.');
           }
         });
       }
+
+      // ✅ 4️⃣ Invoke checkResult and handle outcome
       checkResult()
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+        .then((response) => console.log(response)) // ✅ 5️⃣a Success handler
+        .catch((error) => console.log(error)); // ✅ 5️⃣b Failure handler
     </script>
-  </body>
+    <!-- Test Case:
+     1. Open this page in a browser.
+     2. Open Developer Tools → Console tab.
+     3. Reload the page multiple times.
+     4. Observe console logs: "Generated percent:" and either "I am passed" or "I am failed.".
+  --></body>
 </html>
